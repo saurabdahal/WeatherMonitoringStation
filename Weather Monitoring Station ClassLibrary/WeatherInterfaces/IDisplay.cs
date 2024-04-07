@@ -11,7 +11,8 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherInterfaces
     /// </summary>
     public interface IDisplay
     {
-        void Update(float temperature, float humidity, float pressure);
+        void Display();
+        
     }
 
 }

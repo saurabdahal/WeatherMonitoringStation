@@ -4,17 +4,18 @@ using Weather_Monitoring_Station_ClassLibrary.WeatherInterfaces;
 namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Singleton
 {
     /// <summary>
-    /// Singleton class representing weather data.
+    /// This is a singleton class which also acts as the subject for the observer pattern.
     /// </summary>
     public class WeatherData
     {
-        // Singleton instance (thread-safe using static initialization)
-        private static readonly WeatherData instance = new WeatherData();
+        /*
+         * This is an example of lazy initialization. The WeatherData is initialized first only when it is accessed
+         * and if it is accessed again then the get method is called and the instance is returned. For any subsequent access
+         * will not create the instance and rather return the instance.
+         */
+        public static WeatherData Instance { get; } = new WeatherData();
 
-        // Public property to access the singleton instance
-        public static WeatherData Instance => instance;
-
-        private readonly List<IDisplay> observers;
+        private readonly List<IObserver> observers;
         private float temperature;
         private float humidity;
         private float pressure;
@@ -22,19 +23,35 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Singlet
         // Private constructor to prevent instantiation
         private WeatherData()
         {
-            observers = new List<IDisplay>();
+            observers = [];
         }
 
-        public void RegisterObserver(IDisplay observer)
+        /// <summary>
+        /// adds observer to the observers list
+        /// </summary>
+        /// <param name="observer"></param>
+        public void RegisterObserver(IObserver observer)
         {
             observers.Add(observer);
         }
 
-        public void RemoveObserver(IDisplay observer)
+        /// <summary>
+        /// removes observer from observers list
+        /// </summary>
+        /// <param name="observer"></param>
+        public void RemoveObserver(IObserver observer)
         {
             observers.Remove(observer);
         }
 
+        /// <summary>
+        /// this method does two things:
+        ///     1. sets the value to the fields
+        ///     2. notiifies all the observers about the change in value of the fields
+        /// </summary>
+        /// <param name="temperature"></param>
+        /// <param name="humidity"></param>
+        /// <param name="pressure"></param>
         public void SetMeasurements(float temperature, float humidity, float pressure)
         {
             // Update weather data
@@ -46,6 +63,9 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Singlet
             NotifyObservers();
         }
 
+        /// <summary>
+        /// this method notifies all the obervers by calling their update method
+        /// </summary>
         private void NotifyObservers()
         {
             foreach (var observer in observers)

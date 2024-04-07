@@ -11,7 +11,7 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Observe
     /// Concrete observer displaying weather forecast.
     /// Implements Observer pattern.
     /// </summary>
-    public class ForecastDisplay : IDisplay
+    public class ForecastDisplay : IDisplay, IObserver
     {
         private float lastPressure;
         private float currentPressure = 29.92f;
