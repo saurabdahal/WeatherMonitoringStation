@@ -6,7 +6,7 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Singlet
     /// <summary>
     /// Singleton class representing weather data.
     /// </summary>
-    public sealed class WeatherData
+    public class WeatherData
     {
         // Singleton instance (thread-safe using static initialization)
         private static readonly WeatherData instance = new WeatherData();
