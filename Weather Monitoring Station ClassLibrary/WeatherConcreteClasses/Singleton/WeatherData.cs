@@ -1,28 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Weather_Monitoring_Station_ClassLibrary.WeatherInterfaces;
 
-namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses
+namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Singleton
 {
-   
-
     /// <summary>
     /// Singleton class representing weather data.
     /// </summary>
     public sealed class WeatherData
     {
-        private static readonly Lazy<WeatherData> instance = new Lazy<WeatherData>(() => new WeatherData());
+        // Singleton instance (thread-safe using static initialization)
+        private static readonly WeatherData instance = new WeatherData();
 
-        public static WeatherData Instance => instance.Value;
+        // Public property to access the singleton instance
+        public static WeatherData Instance => instance;
 
         private readonly List<IDisplay> observers;
         private float temperature;
         private float humidity;
         private float pressure;
 
+        // Private constructor to prevent instantiation
         private WeatherData()
         {
             observers = new List<IDisplay>();
@@ -40,9 +37,12 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses
 
         public void SetMeasurements(float temperature, float humidity, float pressure)
         {
+            // Update weather data
             this.temperature = temperature;
             this.humidity = humidity;
             this.pressure = pressure;
+
+            // Notify all observers when weather data changes
             NotifyObservers();
         }
 
@@ -50,9 +50,9 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses
         {
             foreach (var observer in observers)
             {
+                // Update each observer with the latest weather data
                 observer.Update(temperature, humidity, pressure);
             }
         }
     }
-
 }
