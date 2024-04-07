@@ -20,6 +20,7 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Observe
         {
             lastPressure = currentPressure;
             currentPressure = pressure;
+
             Display();
         }
 
@@ -31,6 +32,7 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Observe
                 Console.WriteLine("Forecast: More of the same");
             else
                 Console.WriteLine("Forecast: Watch out for cooler, rainy weather");
+            
         }
     }
 }

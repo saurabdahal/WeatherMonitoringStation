@@ -47,7 +47,7 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Singlet
         /// <summary>
         /// this method does two things:
         ///     1. sets the value to the fields
-        ///     2. notiifies all the observers about the change in value of the fields
+        ///     2. as soon as the value in the field is changed, it also notiifies all the observers about the change in value of the fields
         /// </summary>
         /// <param name="temperature"></param>
         /// <param name="humidity"></param>

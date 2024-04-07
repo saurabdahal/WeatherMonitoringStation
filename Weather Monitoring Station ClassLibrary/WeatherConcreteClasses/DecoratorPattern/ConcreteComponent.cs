@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Weather_Monitoring_Station_ClassLibrary.WeatherInterfaces;
 
-namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Decorator
+namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.DecoratorPatterb
 {
     public class ConcreteComponent : IDisplay
     {
         public void Display()
         {
-            Console.WriteLine("Today's weather is Sunny");
+            Console.Write("Today's weather is Sunny.");
         }
     }
 }

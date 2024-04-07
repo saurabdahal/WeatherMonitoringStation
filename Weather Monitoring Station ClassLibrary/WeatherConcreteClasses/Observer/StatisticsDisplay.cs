@@ -11,7 +11,7 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Observe
     /// Concrete observer displaying weather statistics.
     /// Implements Observer pattern.
     /// </summary>
-    public class StatisticsDisplay : IDisplay
+    public class StatisticsDisplay : IDisplay, IObserver
     {
         private float maxTemperature = float.MinValue;
         private float minTemperature = float.MaxValue;
