@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Weather_Monitoring_Station_ClassLibrary.WeatherInterfaces
 {
-    internal interface Interface1
+    /// <summary>
+    /// Interface for display elements.
+    /// </summary>
+    public interface IDisplay
     {
+        void Update(float temperature, float humidity, float pressure);
     }
+
 }
