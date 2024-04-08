@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Weather_Monitoring_Station_ClassLibrary.Metrics
 {
+    /// <summary>
+    /// This class define some weather parameters
+    /// </summary>
+    /// <Author>Saurav Dahal</Author>
     public class WeatherMetrics
     {
         public float Temperature { get; }
