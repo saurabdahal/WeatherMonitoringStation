@@ -10,10 +10,11 @@ using Weather_Monitoring_Station_ClassLibrary.WeatherInterfaces;
 namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Observer
 {
     /// <summary>
-    /// Concrete observer displaying current weather conditions.
+    /// This is a concrete observer class displaying current weather conditions.
     /// It implements both Observer and Decorator patterns.
     /// Implementation of Decorator pattern is done by extending the base decorator class then overriding the Display method
     /// </summary>
+    /// <Author>Saurav Dahal</Author>
     public class CurrentConditionsDisplay(IDisplay display) : Decorator(display), IObserver
     {
         private float temperature;
