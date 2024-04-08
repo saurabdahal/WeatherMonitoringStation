@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Weather_Monitoring_Station_ClassLibrary.Metrics;
 using Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.DecoratorPattern;
 using Weather_Monitoring_Station_ClassLibrary.WeatherInterfaces;
 
@@ -17,11 +18,13 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Observe
     {
         private float temperature;
         private float humidity;
+        private float rain;
 
-        public void Update(float temperature, float humidity, float pressure)
+        public void Update(WeatherMetrics weatherMetrics)
         {
-            this.temperature = temperature;
-            this.humidity = humidity;
+            this.temperature = weatherMetrics.Temperature;
+            this.humidity = weatherMetrics.Humidity;
+            this.rain = weatherMetrics.RainProb;
             Display();
         }
 
@@ -30,8 +33,14 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Observe
         /// </summary>
         public override void Display()
         {
+            DateTime now = DateTime.Now;
+
+            string todayDate = now.ToString("MMMM dd, yyyy");
+            string currentTime = now.ToString("hh:mm:ss tt");
+
+            Console.Write($"Today is {todayDate} and time is {currentTime}.");
             display.Display();
-            Console.WriteLine($"Current Conditions: {temperature}F degrees and {humidity}% humidity");
+            Console.WriteLine($"Current Weather Conditions: Temperature is {temperature} C and {humidity}% humidity. The probability of rain is {rain}%");
         }
     }
 }

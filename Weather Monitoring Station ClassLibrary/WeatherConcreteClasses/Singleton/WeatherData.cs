@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Weather_Monitoring_Station_ClassLibrary.Metrics;
 using Weather_Monitoring_Station_ClassLibrary.WeatherInterfaces;
 
 namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Singleton
@@ -16,9 +17,7 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Singlet
         public static WeatherData Instance { get; } = new WeatherData();
 
         private readonly List<IObserver> observers;
-        private float temperature;
-        private float humidity;
-        private float pressure;
+        private WeatherMetrics weatherMetrics;
 
         // Private constructor to prevent instantiation
         private WeatherData()
@@ -52,12 +51,10 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Singlet
         /// <param name="temperature"></param>
         /// <param name="humidity"></param>
         /// <param name="pressure"></param>
-        public void SetMeasurements(float temperature, float humidity, float pressure)
+        public void SetMeasurements(WeatherMetrics metrics)
         {
             // Update weather data
-            this.temperature = temperature;
-            this.humidity = humidity;
-            this.pressure = pressure;
+            this.weatherMetrics = metrics;
 
             // Notify all observers when weather data changes
             NotifyObservers();
@@ -71,7 +68,7 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Singlet
             foreach (var observer in observers)
             {
                 // Update each observer with the latest weather data
-                observer.Update(temperature, humidity, pressure);
+                observer.Update(weatherMetrics);
             }
         }
     }

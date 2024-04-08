@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Weather_Monitoring_Station_ClassLibrary.Metrics;
 using Weather_Monitoring_Station_ClassLibrary.WeatherInterfaces;
 
 namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Observer
@@ -18,23 +19,25 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Observe
         private float temperatureSum = 0;
         private int numReadings = 0;
 
-        public void Update(float temperature, float humidity, float pressure)
+        public void Update(WeatherMetrics weatherMetrics)
         {
-            temperatureSum += temperature;
+            temperatureSum += weatherMetrics.Temperature;
             numReadings++;
 
-            if (temperature > maxTemperature)
-                maxTemperature = temperature;
+            if (weatherMetrics.Temperature > maxTemperature)
+                maxTemperature = weatherMetrics.Temperature;
 
-            if (temperature < minTemperature)
-                minTemperature = temperature;
+            if (weatherMetrics.Temperature < minTemperature)
+                minTemperature = weatherMetrics.Temperature;
 
             Display();
         }
 
         public void Display()
         {
-            Console.WriteLine($"Avg/Max/Min temperature = {temperatureSum / numReadings}/{maxTemperature}/{minTemperature}");
+            Console.WriteLine($"Min temperature = {minTemperature}");
+            Console.WriteLine($"Average temperature = {temperatureSum / numReadings}");
+            Console.WriteLine($"Max temperature ={maxTemperature}");
         }
     }
 }
