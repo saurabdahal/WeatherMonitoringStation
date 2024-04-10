@@ -12,17 +12,17 @@ class Program
         WeatherData weatherData = WeatherData.Instance;
         IDisplay display= new ConcreteComponent();
 
-        // Create displays using factory
+        // here we add the displays to the display manager
         IObserver currentConditionsDisplayObserver = new CurrentConditionsDisplay(display);
         IObserver statisticsDisplayObserver = new StatisticsDisplay();
         IObserver forecastDisplayObserver = new ForecastDisplay();
 
-        // Register displays as observers
+        // here we register the observer
         weatherData.RegisterObserver(currentConditionsDisplayObserver);
         weatherData.RegisterObserver(statisticsDisplayObserver);
         weatherData.RegisterObserver(forecastDisplayObserver);
 
-        // Simulate weather changes
+        // This is a simulation of weather station.
         weatherData.SetMeasurements(new WeatherMetrics(20.0f, 40.0f, 30.4f, 0.0f));
         Console.WriteLine("\n==========================================\n");
 
