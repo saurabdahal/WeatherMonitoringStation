@@ -11,7 +11,7 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Singlet
     {
         /*
          * This is an example of lazy initialization. The WeatherData is initialized first only when it is accessed
-         * and if it is accessed again then the get method is called and the instance is returned. For any subsequent access
+         * and if it is accessed again then the get method is called and the instance is returned. For any subsequent access it
          * will not create the instance and rather return the instance.
          */
         public static WeatherData Instance { get; } = new WeatherData();
@@ -53,7 +53,6 @@ namespace Weather_Monitoring_Station_ClassLibrary.WeatherConcreteClasses.Singlet
         /// <param name="pressure"></param>
         public void SetMeasurements(WeatherMetrics metrics)
         {
-            // Update weather data
             this.weatherMetrics = metrics;
 
             // Notify all observers when weather data changes
